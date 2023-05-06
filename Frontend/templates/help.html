@@ -1,0 +1,74 @@
+{% load static %}
+<html>
+    <head>
+        <title>Help</title>
+        <style>
+            body{
+                font-family:Arial, sans-serif;
+                background-color: #5254ad;
+                margin:0;
+                padding:0;
+              }
+              .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #f5f5f5;
+              }
+              .header .logo {
+                font-size: 25px;
+                font-family: 'Sriracha', cursive;
+                color: #000;
+                text-decoration: none;
+                margin-left: 30px;
+              }
+              .nav-items {
+                float: right;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                background-color: #f5f5f5;
+                margin-left: 50px;
+              }
+              .nav-items a {
+                float: right;
+                text-decoration: none;
+                display: inline-block;
+                color: #000;
+                padding: 35px 25px;
+              }
+              .nav-items a:hover,
+              .nav-items a.active{
+                background:#5254ad;
+                color:#fff;
+                box-shadow:0 3px 3px rgba(0,0,0,0.2);
+              }
+        </style>
+        <script src={% static 'js/upload.js' %}></script>
+    </head>
+
+<body bgcolor="#c8e8e9">
+    <header class="header">
+        <a href="#" class="logo">Social Distancing Detection</a>
+          <nav class="nav-items">
+            <a data.active="home" href="{% url 'sample:home' %}">Home</a>
+            <a href="{% url 'sample:register' %}">Signup/Login</a>
+          </nav>
+    </header>
+    <div style="float:left; margin : 15px 20px 5px 10px" >
+      <iframe src="{% static 'videos/Untitled.mp4'%}" width="900" height="550" frameborder="0" allowfullscreen="allowfullscreen">
+      </iframe>
+    </div>
+  <div style="color:#fff">
+  <!--<h2 style="text-align:center">Help Page</h2>-->
+    <h5>If you want to upload a video for social distancing detection you need to first signup into the application.</h5>
+    <h5>Click on "Signup/Login", then there will appear a signup form enter your details and then it directs to Login page.</h5>
+    <h5>Enter your Login credentials and click the button "Login", it will directs to the Upload page.</h5>
+    <h5>There you can find "Choose File". Click on it. Select a video file from your system.</h5>
+    <h5>After selecting the video, click on buttons that you want to check either "Detection" or "Viloation".</h5>
+    <h5>If you have clicked the Detection button then there appears a python frame in the background which is output file will run showing the green bounding boxes over the people.press the "q" to end the output video python frame.</h5>
+    <h5>If you have clicked the Violation button then there appears a python frame in the background which is output file will run showing the violations with red bounding boxes over the people who are not maintaining the minimum diatnce and remaining will be shown with the green bounded boxes.</h5>
+    <h5>The video also consists of count of the violations and gives an voice alert as "Please maintaining Social Distance".press the "q" to end the output video python frame.</h5>
+  </div>
+</body>
+</html>

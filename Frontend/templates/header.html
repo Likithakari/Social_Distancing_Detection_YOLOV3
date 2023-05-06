@@ -1,0 +1,157 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+     <meta charset="UTF-8">
+     <title>upload page</title>
+     <style>
+        body{
+          font-family:Arial, sans-serif;
+          background-color: #5254ad;
+          margin:0;
+          padding:0;
+        }
+        .header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background-color: #f5f5f5;
+        }
+        .header h2{
+          margin:30px;
+        }
+        .nav-items {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          background-color: #f5f5f5;
+          margin-right: 90px;
+        }
+        .nav-items a {
+          text-decoration: none;
+          display: inline-block;
+          color: #000;
+          padding: 35px 20px;
+        }
+        .nav-items a:hover,
+        .nav-items a.active{
+          background:#5254ad;
+          color:#fff;
+          box-shadow:0 3px 3px rgba(0,0,0,0.2);
+        }
+        .container {
+          max-width: 700px;
+          margin-top: 110px;
+          margin-bottom: 50px;
+          /*margin: 0 auto;*/
+          padding: 20px;
+          background-color: #fff;
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+          border-radius: 20px;
+        }
+        h2{
+          margin-top: 0;
+        }
+        form {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-top: 20px;
+        }
+        input[type="file"] {
+          background:#fff;
+          display:block;
+          padding:12px;
+          border-radius:4px;
+          width:90%;
+          line-height:25px;
+          border:2px solid #000;
+          font-size:20px;
+          position:relative;
+          color:#000;
+        }
+        input[type="file"]::file-selector-button {
+          position:absolute;
+          background-color:#5254ad;
+          right:-5px;
+          top:-2px;
+          width:100px;
+          height:107%;
+          line-height:50px;
+          text-align:center;
+          font-size:15px;
+          border-radius:0 4px 4px 0;
+          cursor:pointer;
+          color:#fff;
+        }
+
+        input[type="submit"] {
+          display: inline-block;
+          margin:10px;
+          padding:12px 18px;
+          color:#fff;
+          font-size:18px;
+          outline:none;
+          border:none;
+          background:#5254ad;
+          cursor:pointer;
+        }
+        input[type="button"] {
+          display: inline-block;
+          margin:10px;
+          padding:12px 18px;
+          color:#fff;
+          font-size:18px;
+          outline:none;
+          border:none;
+          background:#5254ad;
+          cursor:pointer;
+        }
+     </style>
+     <script src={% static 'js/upload.js' %}></script>
+</head>
+<script>
+  function detection(){
+    document.forms['sample'].action="detection";
+    document.forms['sample'].submit();
+  }
+</script>
+<center>
+<body >
+     <!-- MENU -->
+     <header class="header">
+        {% if user.is_authenticated %}
+        <h2>Hello, {{user.username}}</h2>
+          <nav class="nav-items">
+            <a data.active="home" href="{% url 'sample:home' %}">Home</a>
+            <a data.active="help" href="{% url 'sample:help'%}">Help</a>
+            <a data.active="logout" href="{% url 'sample:logout' %}">Logout</a>
+            {% endif %}
+          </nav>
+        </header>
+     <!-- HOME -->
+  <div class="container">
+    <h2>UPLOAD VIDEO</h2>
+    <form name="sample" method="post" enctype="multipart/form-data" action="counter">
+    {% csrf_token %}
+      <div >
+        <label for="fname"></label>
+      </div> 
+      <input name="filePath" type="file"><br><br>
+      <input type="submit" value="Violation" name="Violation" data-inline="true">
+      {% if filePathName %}
+      <input type="hidden" value="Violation" name="Violation" >
+      {% endif %}
+      <input type="button" value="Detection" name="Detection" data-inline="true" onclick='detection();'/>
+      {% if filePathName %}
+      <input type="hidden" value="Detection" name="Detection" data-inline="true" onclick='detection();' />
+      {% endif %}
+      <!--<div ><label for="fname">live input</label> </div> <input name="filePath" type="file" style="border-top-width:20px;
+       padding-top:50px;"><br><br>
+       <br>-->
+    </form>
+  </div>
+</body>
+</center>
+</html>
